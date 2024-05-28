@@ -7,6 +7,10 @@ import Sidebar from '../Sidebar/Sidebar'
 const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [jobs, setJobs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  //we gonna show 6 Items per page
+  const itemsPerPage = 6;
 
   const [query, setQuery] = useState("");
   const handleInputChange = (event) => {
@@ -15,10 +19,12 @@ const Home = () => {
 
   //Fetch Jobs data from Jobs.json
   useEffect(() => {
+    setIsLoading(true);
     fetch("jobs.json")
       .then(res => res.json())
       .then((data) => {
         setJobs(data);
+        setIsLoading(false); //Jobs fetch then, no loading
       })
   }, [])
   console.log(jobs);
@@ -48,10 +54,10 @@ const Home = () => {
     //2- Category wise filtering
     if (selected) {
       filteredJobs = filteredJobs.filter(({ jobLocation, maxPrice, experienceLevel, salaryType, employmentType, postingDate }) => (
-          jobLocation.toLowerCase() === selected.toLowerCase() ||
-          parseInt(maxPrice) <= parseInt(selected) ||
-          salaryType.toLowerCase() === selected.toLowerCase() ||
-          employmentType.toLowerCase() === selected.toLowerCase()
+        jobLocation.toLowerCase() === selected.toLowerCase() ||
+        parseInt(maxPrice) <= parseInt(selected) ||
+        salaryType.toLowerCase() === selected.toLowerCase() ||
+        employmentType.toLowerCase() === selected.toLowerCase()
       ));
     }
 
@@ -70,11 +76,19 @@ const Home = () => {
       <div className='bg-[#FAFAFA] md:grid grid-cols-4 gap-8 lg:px-24 px-4 py-12'>
         {/* left side */}
         <div className='bg-white p-4 rounded'>
-          <Sidebar handleChange = {handleChange} handleClick={handleClick}></Sidebar>
+          <Sidebar handleChange={handleChange} handleClick={handleClick}></Sidebar>
         </div>
 
         {/* Job Card */}
-        <div className='col-span-2 bg-white p-4 rounded-sm'><Jobs result={result} /></div>
+        <div className='col-span-2 bg-white p-4 rounded-sm'>
+        {
+          isLoading ? (<p className='text-lg font-bold'>Loading....</p>) : result.length > 0 ? (<Jobs result={result} />) : <>
+            <h3 className='text-lg font-bold mb-2'>{result.length} Jobs</h3>
+            <p>No data found</p>
+          </>
+        }
+        </div>
+        
 
         {/* Right Card */}
         <div className='bg-white p-4 rounded'>Right</div>
