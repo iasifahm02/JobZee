@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Banner from '../Components/Banner'
 import Card from '../Components/Card'
 import Jobs from './Jobs'
+import Sidebar from '../Sidebar/Sidebar'
 
 const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -46,12 +47,12 @@ const Home = () => {
 
     //2- Category wise filtering
     if (selected) {
-      filteredJobs = filteredJobs.filter(({ jobLocation, maxPrice, experienceLevel, salaryType, employmentType, postingDate }) => {
-        jobLocation.toLowerCase() === selected.toLowerCase() ||
+      filteredJobs = filteredJobs.filter(({ jobLocation, maxPrice, experienceLevel, salaryType, employmentType, postingDate }) => (
+          jobLocation.toLowerCase() === selected.toLowerCase() ||
           parseInt(maxPrice) <= parseInt(selected) ||
           salaryType.toLowerCase() === selected.toLowerCase() ||
           employmentType.toLowerCase() === selected.toLowerCase()
-      });
+      ));
     }
 
     //In the end, return filtered Jobs
@@ -68,7 +69,9 @@ const Home = () => {
       {/* Main Content */}
       <div className='bg-[#FAFAFA] md:grid grid-cols-4 gap-8 lg:px-24 px-4 py-12'>
         {/* left side */}
-        <div className='bg-white p-4 rounded'>Left</div>
+        <div className='bg-white p-4 rounded'>
+          <Sidebar handleChange = {handleChange} handleClick={handleClick}></Sidebar>
+        </div>
 
         {/* Job Card */}
         <div className='col-span-2 bg-white p-4 rounded-sm'><Jobs result={result} /></div>
