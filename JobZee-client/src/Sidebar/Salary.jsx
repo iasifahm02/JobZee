@@ -17,11 +17,11 @@ const Salary = ({ handleChange, handleClick }) => {
           <input type="radio" name="test" value="" onChange={handleChange} />
           <span className='checkmark'></span> Any
         </label>
-        {/* Now We'll create component for all location option */}
-        <InputField handleChange={handleChange} value="30" title="<30K" name="test"></InputField>
-        <InputField handleChange={handleChange} value="50" title="<50K" name="test"></InputField>
-        <InputField handleChange={handleChange} value="80" title="<80K" name="test"></InputField>
-        <InputField handleChange={handleChange} value="100" title="<100K" name="test"></InputField>
+        {/* Now We'll create component for all Salary option */}
+        <InputField handleChange={handleChange} value="30" title="30000K" name="test"></InputField>
+        <InputField handleChange={handleChange} value="50" title="50000K" name="test"></InputField>
+        <InputField handleChange={handleChange} value="80" title="80000K" name="test"></InputField>
+        <InputField handleChange={handleChange} value="100" title="100000K" name="test"></InputField>
       </div>
     </div>
   )
