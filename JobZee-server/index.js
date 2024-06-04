@@ -31,6 +31,7 @@ async function run() {
         //Create database
         const db = client.db("JobPortal");
         const jobsCollection = db.collection("Jobs");
+        const jobApplicationsCollection = db.collection("JobApplications");
 
         // post a job
         app.post("/post-job", async (req, res) => {
@@ -91,6 +92,22 @@ async function run() {
             const options = { upsert: true };
             const result = await jobsCollection.updateOne(filter, updateDoc, options);
             res.send(result);
+        });
+
+        // Route to handle job applications
+        app.post("/apply-job", async (req, res) => {
+            const { jobId, resumeUrl} = req.body;
+            const application = {
+                jobId: new ObjectId(jobId),
+                resumeUrl,
+                appliedAt: new Date(),
+            };
+            const result = await jobApplicationsCollection.insertOne(application);
+            if (result.insertedId) {
+                res.status(200).send({ message: "Application submitted successfully", status: true });
+            } else {
+                res.status(500).send({ message: "Failed to submit application", status: false });
+            }
         });
 
         // Send a ping to confirm a successful connection
