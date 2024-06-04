@@ -96,10 +96,11 @@ async function run() {
 
         // Route to handle job applications
         app.post("/apply-job", async (req, res) => {
-            const { jobId, resumeUrl} = req.body;
+            const { jobId, resumeUrl, applicantEmail} = req.body;
             const application = {
                 jobId: new ObjectId(jobId),
                 resumeUrl,
+                applicantEmail,
                 appliedAt: new Date(),
             };
             const result = await jobApplicationsCollection.insertOne(application);

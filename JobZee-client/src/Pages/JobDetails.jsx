@@ -21,6 +21,13 @@ const JobDetails = () => {
             inputLabel: "CV or Resume URL address",
             inputPlaceholder: "Enter the URL"
         });
+
+        const { value: email } = await Swal.fire({
+            input: "email",
+            inputLabel: "Applicant Email",
+            inputPlaceholder: "Enter the email"
+        });
+
         if (url) {
             const response = await fetch("http://localhost:5000/apply-job", {
                 method: "POST",
@@ -29,7 +36,8 @@ const JobDetails = () => {
                 },
                 body: JSON.stringify({
                     jobId: id,
-                    resumeUrl: url
+                    resumeUrl: url,
+                    applicantEmail: email
                 }),
             });
 
