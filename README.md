@@ -4,20 +4,20 @@ JobZee is an advanced job portal application designed to connect job seekers wit
 
 ## Features
 
-- **User Authentication**: Secure login and registration for job seekers and employers.
-- **Job Listings**: Browse through a wide range of job listings with advanced search and filter options.
-- **Resume Builder**: Create and manage resumes directly within the platform.
-- **Job Applications**: Apply to jobs with a single click and track application status.
-- **Employer Dashboard**: Employers can post job openings, manage listings, and view applicant details.
-- **Notifications**: Real-time notifications for job applications and status updates.
-- **Responsive Design**: Fully responsive and mobile-friendly layout.
+- **Browse Job Listings**: Explore a diverse array of job listings with advanced search and filtering capabilities.
+- **Easy Job Applications**: Apply to jobs seamlessly with a single click.
+- **Employer Dashboard**: Streamline hiring processes with features to post openings, manage listings, and review applicant details.
+- **Flexible Filters**: Filter job listings by title, location, posting time, and more.
+- **User-Managed Listings**: Empower users to effortlessly post, edit, and manage their job listings.
+- **Enhanced User Experience**: Implement pagination and design a fully responsive and mobile-friendly layout.
+- **User Authentication**: Secure login and registration for job seekers and employers. (To be Implemented)
 
 ## Technologies Used
 
 - **Frontend**: ReactJS, Tailwind CSS
-- **Backend**: Node.js, Express (to be integrated)
-- **Database**: MongoDB (to be integrated)
-- **Authentication**: JWT (to be integrated)
+- **Backend**: Node.js, Express
+- **Database**: MongoDB
+- **Authentication**: JWT
 - **Deployment**: Vercel/Netlify for frontend, Heroku for backend (to be integrated)
 
 ## Getting Started
